@@ -1,2 +1,4 @@
 el-get/.loaddefs.el
 elpa
+el-get
+auto-save-list

@@ -63,7 +63,7 @@
 
 (setq my-packages
       (append
-       '(clojure-mode slime swank-clojure)
+       '(clojure-mode swank-clojure textmate)
        (mapcar 'el-get-source-name el-get-sources)))
 
 (el-get 'sync my-packages)

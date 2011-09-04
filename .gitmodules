@@ -1,0 +1,3 @@
+[submodule "swank-clojure"]
+	path = swank-clojure
+	url = https://github.com/jochu/swank-clojure.git

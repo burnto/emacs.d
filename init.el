@@ -1,5 +1,15 @@
 (push "/usr/local/bin" exec-path)
 
+(if (window-system)
+  (set-frame-size (selected-frame) 124 40))
+
+(setq hl-paren-colors
+      '(;"#8f8f8f" ; this comes from Zenburn
+                   ; and I guess I'll try to make the far-outer parens look like this
+        "orange1" "yellow1" "greenyellow" "green1"
+        "springgreen1" "cyan1" "slateblue1" "magenta1" "purple"))
+
+
 (setq make-backup-files nil)
 (setq auto-save-default nil)
 (setq-default tab-width 2)
@@ -18,52 +28,29 @@
 (tooltip-mode -1)
 
 (set-frame-font "Menlo-13")
-(load-theme 'tango)
+(load-theme 'tango-dark)
 
 (require 'package)
 (setq package-archives (cons '("tromey" . "http://tromey.com/elpa/") package-archives))
 (package-initialize)
 
-;; (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
-;; (require 'el-get)
-
-;; ;; Packages
-
-;; (setq el-get-sources
-;;       '((:name ruby-mode 
-;;                :type elpa
-;;                :load "ruby-mode.el")
-;;         (:name inf-ruby  :type elpa)
-;;         (:name ruby-compilation :type elpa)
-;;         (:name css-mode :type elpa)
-;;         (:name textmate
-;;                :type git
-;;                :url "git://github.com/defunkt/textmate.el"
-;;                :load "textmate.el")
-;;         (:name rvm
-;;                :type git
-;;                :url "http://github.com/djwhitt/rvm.el.git"
-;;                :load "rvm.el"
-;;                :compile ("rvm.el")
-;;                :after (lambda() (rvm-use-default)))
-;;         (:name rhtml
-;;                :type git
-;;                :url "https://github.com/eschulte/rhtml.git"
-;;                :features rhtml-mode)
-;;         (:name yaml-mode 
-;;                :type git
-;;                :url "http://github.com/yoshiki/yaml-mode.git"
-;;                :features yaml-mode)))
-;; (el-get 'sync)
+(add-hook 'clojure-mode-hook (lambda () (highlight-parentheses-mode t) (paredit-mode t)))
 
 
-(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
-(require 'el-get)
 
+;  '(progn (slime-setup '(slime-repl))))
 
-(setq my-packages
-      (append
-       '(clojure-mode swank-clojure textmate)
-       (mapcar 'el-get-source-name el-get-sources)))
+;(add-to-list 'load-path "~/.emacs.d/swank-clojure")
+;(require 'swank-clojure)
 
-(el-get 'sync my-packages)
+;; slime
+;(eval-after-load "slime" 
+;  '(progn (slime-setup '(slime-repl))))
+
+;; (setq swank-clojure-jar-path "~/.clojure/clojure.jar"
+;;       swank-clojure-extra-classpaths 
+;;       (list "~/.clojure/clojure-contrib.jar"
+;;             "~/.emacs.d/swank-clojure/src/swank"))
+
+;; (require 'slime)
+;; (slime-setup) 
